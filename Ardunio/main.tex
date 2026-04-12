@@ -1,0 +1,100 @@
+\documentclass{ctexart}
+% ==================== 依赖与宏包 ====================
+\usepackage{graphicx} % 图像处理
+\usepackage{geometry} % 页面边距
+\usepackage{fancyhdr} % 页眉页脚
+\usepackage{lastpage} % 总页数计算
+\usepackage{xcolor}   % 字体颜色
+\usepackage{listings} % 代码块
+\usepackage{tikz}
+\usepackage{ctex}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+% ==================== 格式与排版配置 ====================
+\geometry{left=2.54cm, right=2.54cm, top=2.54cm, bottom=2.54cm }
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[L]{ Arduino学习笔记 } % 修正了拼写
+\fancyfoot[C]{ 第 ~\thepage 页 (共 ~\pageref{LastPage} 页) } 
+
+\title{Arduino学习笔记}
+\author{钱成发}
+\date{2026.3.20}
+
+\ctexset{
+  section={format=\Large\bfseries\raggedright},
+  section = {
+    name = {,，},        
+    number = \chinese{section}, 
+    aftername = \hspace{0pt}    
+  }
+}
+
+% ==================== 编译控制路由 ====================
+\includeonly{
+    Main_Project/GPIO,
+    Main_Project/PWM,
+    Main_Project/Serial,
+    Main_Project/PreInterrupt,
+    Main_Project/Timer, % 注意一定要用逗号分隔开,不然目录会出现问题
+    Main_Project/OLED
+}
+
+% ==================== 正文主进程 ====================
+\begin{document}
+
+% 生成标题和目录
+\maketitle
+\tableofcontents
+\newpage
+
+% --- 第一部分：导言 ---
+
+\noindent \vspace{2em} 
+{\heiti \zihao{2} 导言} 
+\vspace{1.5em}
+
+% 正文段落：使用 \indent 实现首行缩进
+\indent 这篇文章记录了 Ardmio 学习过程中用到的相关接口函数知识, 学习笔记
+\vspace{2em}
+
+% --- 第二部分：工作环境搭配 ---
+
+\noindent \vspace{2em}
+{\heiti \zihao{2} 工作环境配置}
+
+\indent 第一步, 在 Plat 自己生成的工程中找到 lib 文件夹, 在此处存放自己的工程封装库代码 (这里我建的是 HardWare). 如图所示
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Document_Configue.png}
+    \caption{多文件路径配置-1}
+    
+\end{figure}
+\newpage
+\indent 第二步, 在你所创立的文件夹下再建立 Inc 和 Src 文件夹, 分别用于存放.h 和.c 文件. 如图所示
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Second.png}
+    \caption{多文件路径配置-2}
+
+\end{figure}
+\newpage
+最后, 在你的 platformio.ini 文件中添加这两行代码:build\_ﬂags = -I lib/文件夹名/Inc 和
+build\_src\_ﬁlter = +<*> +<../lib/文件夹名/Src/*.cpp> 这两行代码表示让编译器在编译文
+件时, 把这两个也加进去. 例如
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Third.png}
+    \caption{多文件路径配置-3}
+\end{figure}
+
+
+% --- 内容结束 ---
+\include{Main_Project/GPIO}
+\include{Main_Project/PWM}
+\include{Main_Project/Serial}
+\include{Main_Project/PreInterrupt}
+\include{Main_Project/Timer}
+\include{Main_Project/OLED}
+
+\end{document}
