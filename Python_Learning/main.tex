@@ -1,0 +1,76 @@
+\documentclass{ctexart}
+% ==================== 依赖与宏包 ====================
+\usepackage{graphicx} % 图像处理
+\usepackage{geometry} % 页面边距
+\usepackage{fancyhdr} % 页眉页脚
+\usepackage{lastpage} % 总页数计算
+\usepackage{xcolor}   % 字体颜色
+\usepackage{listings} % 代码块
+\usepackage{tikz}     % 绘制流程图
+\usepackage{ctex}     % 中文支持
+% 引入处理超链接的宏包
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=red]{hyperref}
+% 引入首行缩进宏包
+\usepackage{indentfirst}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+% ==================== 格式与排版配置 ====================
+\geometry{left=2.54cm, right=2.54cm, top=2.54cm, bottom=2.54cm }
+\pagestyle{fancy} 
+\fancyhead{} 
+\fancyhead[L]{ Python学习笔记 } % 修正了拼写
+\fancyfoot[C]{ 第 ~\thepage 页 (共 ~\pageref{LastPage} 页) } 
+
+\title{Python学习笔记}
+\author{钱成发}
+\date{2026.4.26}
+
+% 中文标题(小标题)格式设置
+\ctexset{
+  section={format=\Large\bfseries\raggedright},
+  section = {
+    name = {,，},        
+    number = \chinese{section}, 
+    aftername = \hspace{0pt}    
+  }
+}
+
+% ==================== 编译章节 ====================
+\includeonly{Chapter/Entry_Level_Content
+}
+
+
+% ==================== 正文 ====================
+\begin{document}
+
+%生成标题和目录
+\maketitle
+\tableofcontents
+\newpage
+
+% ==================== 导言内容 ====================
+\section*{导言}
+这篇文章是关于Python的学习笔记，由本人亲手使用 \LaTeX{} 编写，旨在记录Python学习过程的知识点，方便自己查阅和复习。本文章中的视频教材为B站UP主“Python编程入门-好学星城”的系列课程，链接如下：
+\url{https://www.bilibili.com/video/BV1GWofBcEjM?p=25&vd_source=918c8f2c53176f374e8efeae1d09ded8}
+本人认为，Python是一个非常优秀的语言，适合于各种用途，如数据处理、机器学习、爬虫等等。因此我认为有必要学好Python，并且记录下学习过程中的知识点，以便于自己查阅和复习。
+文章知识点均由自己编写，部分内容或许不太严谨，或者视频中的部分内容我会直接跳过，还望大家能够理解，但希望文章内容对大家有所帮助。
+\par
+秉承着万物开源的精神，本文的源代码也会开源，所有内容都会放到本人的GitHub仓库中，欢迎大家 fork 和 star，
+链接如下：
+\url{https://github.com/ethen887/LaTex-Project}。希望读者可以从中获得到一些帮助，如果大家觉得哪里需要改进，欢迎提出issue。仓库将永久
+保持开源，并且持续更新本人的一些笔记或者其它文档，欢迎大家关注。
+\newpage
+
+% ==================== 正文内容 ====================
+
+
+
+
+
+
+
+% =================== 显示编译章节内容 ====================
+\include{Chapter/Entry_Level_Content}
+
+
+\end{document}
